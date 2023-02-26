@@ -20,13 +20,13 @@ class DuplicateElementsTest {
 
     @Test
     void shouldListDuplicateElements() {
-        assertThat(List.of('c', 'd')).hasSameElementsAs(characters1.stream()
-            .collect(new DuplicateElements<>()));
+        assertThat(characters1.stream()
+            .collect(new DuplicateElements<>())).hasSameElementsAs(List.of('c', 'd'));
     }
 
     @Test
     void shouldListDuplicateElement() {
-        assertThat(List.of('d', 'e')).hasSameElementsAs(characters2.stream()
-            .collect(new DuplicateElements<>()));
+        assertThat(characters2.stream()
+            .collect(new DuplicateElements<>())).hasSameElementsAs(List.of('d', 'e'));
     }
 }

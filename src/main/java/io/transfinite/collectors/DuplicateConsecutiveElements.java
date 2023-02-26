@@ -9,11 +9,20 @@ import java.util.TreeSet;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
 public class DuplicateConsecutiveElements<T> implements Collector<T, Set<T>, List<T>> {
+
     private final Set<T> duplicates = new HashSet<>();
+    private final Predicate<T> checkAndInsert = elem -> {
+        if (!duplicates.contains(elem)) {
+            duplicates.clear();
+        }
+        return !duplicates.add(elem);
+    };
+
     @Override
     public Supplier<Set<T>> supplier() {
         return TreeSet::new;
@@ -22,7 +31,7 @@ public class DuplicateConsecutiveElements<T> implements Collector<T, Set<T>, Lis
     @Override
     public BiConsumer<Set<T>, T> accumulator() {
         return (acc, elem) -> {
-            if(checkState(elem)) {
+            if (checkAndInsert.test(elem)) {
                 acc.add(elem);
             }
         };
@@ -44,12 +53,5 @@ public class DuplicateConsecutiveElements<T> implements Collector<T, Set<T>, Lis
     @Override
     public Set<Characteristics> characteristics() {
         return Collections.emptySet();
-    }
-
-    public boolean checkState(T n) { //TODO: skriv om til predikat
-        if (!duplicates.contains(n)) {
-            duplicates.clear();
-        }
-        return !duplicates.add(n);
     }
 }

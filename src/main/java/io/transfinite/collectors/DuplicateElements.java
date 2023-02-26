@@ -9,12 +9,14 @@ import java.util.TreeSet;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
 public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
 
     private final Set<T> duplicates = new HashSet<>();
+    private final Predicate<T> checkAndInsert = elem -> !duplicates.add(elem);
 
     @Override
     public Supplier<Set<T>> supplier() {
@@ -24,7 +26,7 @@ public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
     @Override
     public BiConsumer<Set<T>, T> accumulator() {
         return (acc, elem) -> {
-            if (insertAndCheck(elem)) {
+            if (checkAndInsert.test(elem)) {
                 acc.add(elem);
             }
         };
@@ -47,8 +49,5 @@ public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
     public Set<Characteristics> characteristics() {
         return Collections.emptySet();
     }
-
-    public boolean insertAndCheck(T n) {
-        return !duplicates.add(n);
-    }
+    
 }
