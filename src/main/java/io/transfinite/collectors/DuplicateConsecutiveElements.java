@@ -1,7 +1,6 @@
 package io.transfinite.collectors;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,6 +51,8 @@ public class DuplicateConsecutiveElements<T> implements Collector<T, Set<T>, Lis
 
     @Override
     public Set<Characteristics> characteristics() {
-        return Collections.emptySet();
+        final HashSet<Characteristics> characteristics = new HashSet<>();
+        characteristics.add(Characteristics.CONCURRENT);
+        return characteristics;
     }
 }

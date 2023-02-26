@@ -49,5 +49,4 @@ public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
     public Set<Characteristics> characteristics() {
         return Collections.emptySet();
     }
-    
 }
