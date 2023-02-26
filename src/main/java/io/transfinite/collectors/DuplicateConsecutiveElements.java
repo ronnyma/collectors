@@ -1,4 +1,4 @@
-package io.transfinite;
+package io.transfinite.collectors;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
+public class DuplicateConsecutiveElements<T> implements Collector<T, Set<T>, List<T>> {
     private final Set<T> duplicates = new HashSet<>();
     @Override
     public Supplier<Set<T>> supplier() {
@@ -22,7 +22,7 @@ public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
     @Override
     public BiConsumer<Set<T>, T> accumulator() {
         return (acc, elem) -> {
-            if(insertAndCheck(elem)) {
+            if(checkState(elem)) {
                 acc.add(elem);
             }
         };
@@ -46,7 +46,10 @@ public class DuplicateElements<T> implements Collector<T, Set<T>, List<T>> {
         return Collections.emptySet();
     }
 
-    public  boolean insertAndCheck(T n) {
+    public boolean checkState(T n) { //TODO: skriv om til predikat
+        if (!duplicates.contains(n)) {
+            duplicates.clear();
+        }
         return !duplicates.add(n);
     }
 }
