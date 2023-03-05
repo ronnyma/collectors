@@ -70,6 +70,7 @@
     <dependency>
       <artifactId>assertj-core</artifactId>
       <groupId>org.assertj</groupId>
+      <scope>test</scope>
       <version>3.16.1</version>
     </dependency>
   </dependencies>
