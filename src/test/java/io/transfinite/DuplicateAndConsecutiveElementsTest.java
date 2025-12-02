@@ -2,7 +2,7 @@ package io.transfinite;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-import io.transfinite.collectors.DuplicateConsecutiveElements;
+import io.transfinite.collectors.CustomCollectors;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,12 +22,13 @@ class DuplicateAndConsecutiveElementsTest {
     @Test
     void shouldListDuplicateElements() {
         assertThat(List.of('c')).hasSameElementsAs(characters1
-            .collect(new DuplicateConsecutiveElements<>()));
+            .collect(CustomCollectors.duplicateConsecutiveElements()));
     }
 
     @Test
     void shouldListDuplicateElement() {
         assertThat(List.of('e')).hasSameElementsAs(characters2
-            .collect(new DuplicateConsecutiveElements<>()));
+            .collect(CustomCollectors.duplicateConsecutiveElements()));
     }
+
 }
