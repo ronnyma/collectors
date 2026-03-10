@@ -3,7 +3,6 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>collectors</artifactId>
   <distributionManagement>
 
     <repository>
@@ -17,6 +16,9 @@
     </snapshotRepository>
 
   </distributionManagement>
+
+  <artifactId>collectors</artifactId>
+
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
