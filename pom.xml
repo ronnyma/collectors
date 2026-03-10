@@ -4,7 +4,19 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>collectors</artifactId>
+  <distributionManagement>
 
+    <repository>
+      <id>internal-releases</id>
+      <url>http://192.168.50.108:9199/repository/maven-releases/</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>internal-snapshots</id>
+      <url>http://192.168.50.108:9199/repository/maven-snapshots/</url>
+    </snapshotRepository>
+
+  </distributionManagement>
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
