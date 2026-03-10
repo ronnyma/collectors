@@ -125,5 +125,5 @@
   </properties>
   <url>http://www.example.com</url>
 
-  <version>1.0.0</version>
+  <version>0.0.1-SNAPSHOT</version>
 </project>
