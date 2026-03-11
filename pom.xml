@@ -154,7 +154,7 @@
   </dependencyManagement>
 
 
-  <groupId>transfinite</groupId>
+  <groupId>io.transfinite</groupId>
   <modelVersion>4.0.0</modelVersion>
 
   <name>collectors</name>
@@ -172,7 +172,6 @@
     <junit-platform-suite.version>1.10.2</junit-platform-suite.version>
 
   </properties>
-  <url>http://www.example.com</url>
 
   <version>0.0.1-SNAPSHOT</version>
 </project>
