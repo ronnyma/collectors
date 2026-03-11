@@ -1,8 +1,7 @@
-package io.transfinite;
+package io.transfinite.collectors;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-import io.transfinite.collectors.CustomCollectors;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;

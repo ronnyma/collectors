@@ -92,7 +92,7 @@
             <param>io.transfinite.collectors.*</param>
           </targetClasses>
           <targetTests>
-            <param>io.transfinite.*</param>
+            <param>io.transfinite.collectors.*</param>
           </targetTests>
         </configuration>
       </plugin>
