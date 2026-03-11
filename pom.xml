@@ -86,7 +86,6 @@
         <configuration>
           <outputFormats>
             <outputFormat>XML</outputFormat>
-            <outputFormat>HTML</outputFormat> <!-- Optional, for both formats -->
           </outputFormats>
           <targetClasses>
             <param>io.transfinite.collectors.*</param>
