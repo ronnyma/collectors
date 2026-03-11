@@ -94,6 +94,9 @@
           <targetTests>
             <param>io.transfinite.collectors*</param>
           </targetTests>
+          <historyInputFile>${project.build.directory}/pit-history.bin</historyInputFile>
+          <historyOutputFile>${project.build.directory}/pit-history.bin</historyOutputFile>
+          <threads>8</threads>
         </configuration>
       </plugin>
       <plugin>
