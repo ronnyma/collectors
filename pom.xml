@@ -84,6 +84,9 @@
           </dependency>
         </dependencies>
         <configuration>
+          <outputFormats>
+            <outputFormat>XML</outputFormat>
+          </outputFormats>
           <targetClasses>
             <param>io.transfinite.collectors.*</param>
           </targetClasses>
