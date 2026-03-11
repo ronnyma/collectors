@@ -22,12 +22,10 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
@@ -107,9 +105,10 @@
       <version>${archunit-junit5-engine.version}</version>
     </dependency>
     <dependency>
-      <artifactId>commons-lang</artifactId>
-      <groupId>commons-lang</groupId>
-      <version>2.6</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.18.0</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <artifactId>junit-jupiter</artifactId>
@@ -149,7 +148,7 @@
         <groupId>org.junit</groupId>
         <scope>import</scope>
         <type>pom</type>
-        <version>5.9.2</version>
+        <version>6.0.3</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
