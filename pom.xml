@@ -97,7 +97,7 @@
           <historyInputFile>${project.build.directory}/pit-history.bin</historyInputFile>
           <historyOutputFile>${project.build.directory}/pit-history.bin</historyOutputFile>
           <timestampedReports>false</timestampedReports>
-          <threads>8</threads>
+          <threads>32</threads>
         </configuration>
       </plugin>
       <plugin>
