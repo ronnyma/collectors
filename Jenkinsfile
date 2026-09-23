@@ -12,12 +12,20 @@ pipeline {
         disableConcurrentBuilds()
     }
 
+    environment {
+        // Reduce per-fork JVM startup overhead: tiered-stop-at-1 skips C2 JIT warmup
+        // (not worth it for short-lived test forks), class-data sharing speeds boot.
+        MAVEN_OPTS = '-XX:TieredStopAtLevel=1 -Xshare:auto'
+    }
+
     stages {
         stage('Build, Unit & Integration Test') {
             steps {
                 // 'verify' runs compile -> test (surefire, excludes **/*IT.java per pom)
                 // -> package -> integration-test/verify (failsafe, **/*IT.java)
-                sh 'mvn -B -ntp clean verify'
+                // -T 1C: one reactor thread per core (no-op today, single-module; free for later)
+                // forkCount=1C/reuseForks: distributes test classes across one JVM fork per core
+                sh 'mvn -B -ntp -T 1C -DforkCount=1C -DreuseForks=true clean verify'
             }
             post {
                 always {
