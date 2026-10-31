@@ -7,8 +7,6 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
-  nodeSelector:
-    kubernetes.io/hostname: putt
   serviceAccountName: jenkins-deploy
   restartPolicy: Never
   containers:
@@ -50,8 +48,8 @@ spec:
           memory: 256Mi
   volumes:
     - name: m2-cache
-      persistentVolumeClaim:
-        claimName: for-app-m2-cache
+      # Keep dependencies during warm-agent reuse without pinning the pod to a node.
+      emptyDir: {}
 '''
         }
     }
