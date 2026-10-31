@@ -1,9 +1,59 @@
 pipeline {
-    agent any
-
-    tools {
-        maven 'Maven-3.9'
-        jdk 'JDK17'
+    agent {
+        kubernetes {
+            idleMinutes 20
+            defaultContainer 'maven'
+            yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: putt
+  serviceAccountName: jenkins-deploy
+  restartPolicy: Never
+  containers:
+    - name: maven
+      image: maven:3.9.11-eclipse-temurin-17
+      command: ["sleep"]
+      args: ["infinity"]
+      resources:
+        requests:
+          cpu: "8"
+          memory: 8Gi
+        limits:
+          cpu: "24"
+          memory: 16Gi
+      volumeMounts:
+        - name: m2-cache
+          mountPath: /root/.m2
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:v1.23.2-debug
+      command: ["/busybox/cat"]
+      tty: true
+      resources:
+        requests:
+          cpu: "4"
+          memory: 2Gi
+        limits:
+          cpu: "12"
+          memory: 8Gi
+    - name: kubectl
+      image: alpine/k8s:1.33.4
+      command: ["sleep"]
+      args: ["infinity"]
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 256Mi
+  volumes:
+    - name: m2-cache
+      persistentVolumeClaim:
+        claimName: for-app-m2-cache
+'''
+        }
     }
 
     options {
